@@ -1,0 +1,53 @@
+# Javascript Node CircleCI 2.0 configuration file
+#   
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:10.15.3-browsers
+     #   environment: Note: You cannot use a built-in environment variable to define another environment variable. Instead, you must use a run step to export the new environment variables using BASH_ENV
+      #    APPLICATION__VERSION: CIRCLE_BUILD_NUM 
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - run:
+          name: Update PATH and Define Environment Variable at Runtime
+          command: |
+            echo 'export APPLICATION__VERSION=$CIRCLE_BUILD_NUM' >> $BASH_ENV
+            source $BASH_ENV
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: npm install
+      - run: npm install node-contrast-2.0.1.tgz --no-save
+
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      # run tests!
+      - run: node node_modules/protractor/bin/webdriver-manager update
+      - run: npm run contrast-e2e -- --application.version=$CIRCLE_BUILD_NUM
+      - run: sudo apt-get install python-pip
+      - run: sudo pip install requests
+      - run: sleep 30
+      - run: python ~/repo/checkVulns.py
+

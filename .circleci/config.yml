@@ -35,7 +35,7 @@ jobs:
             - v1-dependencies-
 
       - run: npm install
-      - run: npm install node-contrast-2.0.1.tgz --no-save
+      - run: npm install node-contrast-2.1.5.tgz --no-save
 
 
       - save_cache:

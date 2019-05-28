@@ -3,14 +3,13 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
-#version: 2.1
-#orbs:
- # verify: contrastsecurity/verify@0.1.2
-#workflows:
-#  test:
-#    jobs:
-     #- build
-#     - contrast-verify
+version: 2.1
+orbs:
+  contrast: contrastsecurity/verify@0.1.2
+workflows:
+  test:
+    jobs:
+      - contrast-verify
 
 jobs:
   build:
@@ -61,7 +60,7 @@ jobs:
     #  - run: sleep 30
     #  - run: python ~/repo/checkVulns.py
 
-  contrast-verify:
+  - contrast-verify:
     executor: contrastsecurity/default
     steps:
       - run:
@@ -78,11 +77,5 @@ jobs:
 #          username: mirko.brandner@contrastsecurity.com
 #  api_key: 3wsMBpOKKQtiqbaLpbP4Z1K4g4qh6VXV
 #  service_key: G4I3FCMZW7YJOU0G
-orbs:
-  contrast: contrastsecurity/verify@0.1.2
-version: 2.1
-workflows:
-  test:
-    jobs:
-      - contrast-verify
+
 

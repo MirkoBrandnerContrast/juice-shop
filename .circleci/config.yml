@@ -3,11 +3,11 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
-      # specify the version you desire here
+      # specify the version you desire here. THIS ONE gives you browsers for the e2e test run
       - image: circleci/node:10.15.3-browsers
      #   environment: Note: You cannot use a built-in environment variable to define another environment variable. Instead, you must use a run step to export the new environment variables using BASH_ENV
       #    APPLICATION__VERSION: CIRCLE_BUILD_NUM 
@@ -35,6 +35,7 @@ jobs:
             - v1-dependencies-
 
       - run: npm install
+# only to save time for the ORB, TODO
       - run: npm install node-contrast-2.1.5.tgz --no-save
 
 
@@ -44,10 +45,31 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
+# needed this to run the tests
       - run: node node_modules/protractor/bin/webdriver-manager update
       - run: npm run contrast-e2e -- --application.version=$CIRCLE_BUILD_NUM
-      - run: sudo apt-get install python-pip
-      - run: sudo pip install requests
-      - run: sleep 30
-      - run: python ~/repo/checkVulns.py
+      # - run: sudo apt-get install python-pip
+    #  - run: sudo pip install requests
+    #  - run: sleep 30
+    #  - run: python ~/repo/checkVulns.py
+
+  contrast-verify:
+    executor: contrastsecurity/default
+    steps:
+      - contrastsecurity/check-vulnerabilities:
+          application-id: 
+          contrast-url: 'https://eval.contrastsecurity.com/Contrast'
+          org-id: c992a0ef-e965-4f92-a410-e09256a78758
+          severities: 'CRITICAL,HIGH,MEDIUM'
+
+#          username: mirko.brandner@contrastsecurity.com
+#  api_key: 3wsMBpOKKQtiqbaLpbP4Z1K4g4qh6VXV
+#  service_key: G4I3FCMZW7YJOU0G
+
+orbs:
+  contrast: contrastsecurity/verify@0.1.2
+workflows:
+  test:
+    jobs:
+      - contrast-verify
 

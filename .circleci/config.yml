@@ -67,10 +67,11 @@ jobs:
           command:
             echo "Mal sehen, ob wir hierherkommen"
       - contrastsecurity/check-vulnerabilities:
-          application-id: 
+          application-id: b2d3d055-e46b-4fbf-9bb9-84090d0c6e78
           contrast-url: 'https://eval.contrastsecurity.com/Contrast'
           org-id: c992a0ef-e965-4f92-a410-e09256a78758
           severities: 'CRITICAL,HIGH,MEDIUM'
+          
       - run:
           command:
             echo "Mal sehen, ob wir auch hierherkommen"

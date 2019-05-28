@@ -3,14 +3,14 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
-version: 2.1
-orbs:
-  verify: contrastsecurity/verify@0.1.2
-workflows:
-  test:
-    jobs:
+#version: 2.1
+#orbs:
+ # verify: contrastsecurity/verify@0.1.2
+#workflows:
+#  test:
+#    jobs:
      #- build
-     - contrast-verify
+#     - contrast-verify
 
 jobs:
   build:
@@ -78,5 +78,11 @@ jobs:
 #          username: mirko.brandner@contrastsecurity.com
 #  api_key: 3wsMBpOKKQtiqbaLpbP4Z1K4g4qh6VXV
 #  service_key: G4I3FCMZW7YJOU0G
-
+orbs:
+  contrast: contrastsecurity/verify@x.y.z
+version: 2.1
+workflows:
+  test:
+    jobs:
+      - contrast-verify
 

@@ -4,6 +4,8 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2.1
+orbs:
+  contrast: contrastsecurity/verify@0.1.2
 jobs:
   build:
     docker:
@@ -66,8 +68,6 @@ jobs:
 #  api_key: 3wsMBpOKKQtiqbaLpbP4Z1K4g4qh6VXV
 #  service_key: G4I3FCMZW7YJOU0G
 
-orbs:
-  contrast: contrastsecurity/verify@0.1.2
 workflows:
   test:
     jobs:

@@ -79,7 +79,7 @@ jobs:
 #  api_key: 3wsMBpOKKQtiqbaLpbP4Z1K4g4qh6VXV
 #  service_key: G4I3FCMZW7YJOU0G
 orbs:
-  contrast: contrastsecurity/verify@x.y.z
+  contrast: contrastsecurity/verify@0.1.2
 version: 2.1
 workflows:
   test:

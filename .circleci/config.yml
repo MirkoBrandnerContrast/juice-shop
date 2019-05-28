@@ -71,7 +71,7 @@ jobs:
           contrast-url: 'https://eval.contrastsecurity.com/Contrast'
           org-id: c992a0ef-e965-4f92-a410-e09256a78758
           severities: 'CRITICAL,HIGH,MEDIUM'
-          username: 'mirko.brandner@contrastsecurity.com'
+          username: "mirko.brandner@contrastsecurity.com"
           api-key: 3wsMBpOKKQtiqbaLpbP4Z1K4g4qh6VXV
           service-key: G4I3FCMZW7YJOU0G
           vulnerability-threshold: 0

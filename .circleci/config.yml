@@ -7,7 +7,7 @@ version: 2.1
 orbs:
   contrast: contrastsecurity/verify@0.1.2
 workflows:
-  buildandtest:
+  test:
     jobs:
      #- build
      - contrast-verify

@@ -53,8 +53,8 @@ jobs:
 
       # run tests!
 # needed this to run the tests
-#      - run: node node_modules/protractor/bin/webdriver-manager update
- #     - run: npm run contrast-e2e -- --application.version=$CIRCLE_BUILD_NUM
+      - run: node node_modules/protractor/bin/webdriver-manager update
+      - run: npm run contrast-e2e -- --application.version=$CIRCLE_BUILD_NUM
       # - run: sudo apt-get install python-pip
     #  - run: sudo pip install requests
     #  - run: sleep 30
@@ -65,7 +65,7 @@ jobs:
     steps:
       - run:
           command:
-            echo "Mal sehen, ob wir hierherkommen"
+            echo "Executing check"
       - contrastsecurity/check-vulnerabilities:
           application-id: 'b2d3d055-e46b-4fbf-9bb9-84090d0c6e78'
           contrast-url: 'https://eval.contrastsecurity.com/Contrast'
@@ -75,7 +75,7 @@ jobs:
 
       - run:
           command:
-            echo "Mal sehen, ob wir auch hierherkommen"
+            echo "Finished Check"
 
 
 

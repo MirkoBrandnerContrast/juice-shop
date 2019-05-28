@@ -6,6 +6,12 @@
 version: 2.1
 orbs:
   contrast: contrastsecurity/verify@0.1.2
+workflows:
+  buildandtest:
+    jobs:
+      - build
+      - contrast-verify
+
 jobs:
   build:
     docker:
@@ -68,9 +74,4 @@ jobs:
 #  api_key: 3wsMBpOKKQtiqbaLpbP4Z1K4g4qh6VXV
 #  service_key: G4I3FCMZW7YJOU0G
 
-workflows:
-  buildandtest:
-    jobs:
-      - build
-      - contrast-verify
 

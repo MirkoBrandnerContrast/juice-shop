@@ -9,7 +9,7 @@ orbs:
 workflows:
   test:
     jobs:
-      - contrast/contrast-verify
+      - contrast-verify
 
 jobs:
   build:

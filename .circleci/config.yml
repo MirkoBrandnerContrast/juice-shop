@@ -9,7 +9,7 @@ orbs:
 workflows:
   test:
     jobs:
-      - contrast-verify
+      - contrast/contrast-verify
 
 jobs:
   build:
@@ -60,7 +60,7 @@ jobs:
     #  - run: sleep 30
     #  - run: python ~/repo/checkVulns.py
 
-  - contrast-verify:
+  contrast-verify:
     executor: contrastsecurity/default
     steps:
       - run:

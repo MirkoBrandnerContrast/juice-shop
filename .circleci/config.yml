@@ -69,7 +69,8 @@ jobs:
 #  service_key: G4I3FCMZW7YJOU0G
 
 workflows:
-  test:
+  buildandtest:
     jobs:
+      - build
       - contrast-verify
 
